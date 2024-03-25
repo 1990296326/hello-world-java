@@ -16,7 +16,6 @@ on:
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     steps:
@@ -27,9 +26,20 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-    - name: Build JAVA
-      run: javac HelloWorld.java
 
-    # # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    # - name: Update dependency graph
-    #   uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+    - name: Compile and Package with Maven
+        run: |
+        mvn compile package
+        echo "Generated JAR file location:"
+        ls -lh target/*.jar
+      working-directory: .
+      # 假设你的pom.xml文件位于项目根目录下
+
+    # 可选：如果要将生成的JAR文件上传到GitHub仓库的Artifacts
+    - name: Upload JAR as artifact
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: hello-world-jar
+        path: target/*.jar
+        # 这假设Maven默认输出路径下生成的JAR文件
