@@ -26,16 +26,16 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-    - name: Install Maven 3.6.2
-      run: |
-          wget https://archive.apache.org/dist/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.zip
-          unzip apache-maven-3.6.2-bin.zip -d /data
-          echo 'export M2_HOME=/data/apache-maven-3.6.2' >> $GITHUB_ENV
-          echo 'export PATH=$M2_HOME/bin:$PATH' >> $GITHUB_ENV
-          rm apache-maven-3.6.2-bin.zip
+    # - name: Install Maven 3.6.2
+    #   run: |
+    #       wget https://archive.apache.org/dist/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.zip
+    #       unzip apache-maven-3.6.2-bin.zip -d /data
+    #       echo 'export M2_HOME=/data/apache-maven-3.6.2' >> $GITHUB_ENV
+    #       echo 'export PATH=$M2_HOME/bin:$PATH' >> $GITHUB_ENV
+    #       rm apache-maven-3.6.2-bin.zip
     - name: Compile and Package with Maven
       run: |
-        mvn compile package
+        /data/apache-maven-3.6.2/bin/mvn compile package
         echo "Generated JAR file location:"
         ls -lh target/*.jar
       working-directory: .
