@@ -26,7 +26,8 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-
+    - name: Load profile (Optional)
+      run: source /etc/profile
     - name: Compile and Package with Maven
       run: |
         mvn compile package
