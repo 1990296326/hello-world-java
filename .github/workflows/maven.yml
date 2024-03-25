@@ -29,8 +29,8 @@ jobs:
     - name: Install Maven 3.6.2
       run: |
           wget https://archive.apache.org/dist/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.zip
-          unzip apache-maven-3.6.2-bin.zip -d /usr/local
-          echo 'export M2_HOME=/usr/local/apache-maven-3.6.2' >> $GITHUB_ENV
+          unzip apache-maven-3.6.2-bin.zip -d /data
+          echo 'export M2_HOME=/data/apache-maven-3.6.2' >> $GITHUB_ENV
           echo 'export PATH=$M2_HOME/bin:$PATH' >> $GITHUB_ENV
           rm apache-maven-3.6.2-bin.zip
     - name: Compile and Package with Maven
