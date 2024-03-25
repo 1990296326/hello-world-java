@@ -28,7 +28,7 @@ jobs:
         cache: maven
 
     - name: Compile and Package with Maven
-        run: |
+      run: |
         mvn compile package
         echo "Generated JAR file location:"
         ls -lh target/*.jar
